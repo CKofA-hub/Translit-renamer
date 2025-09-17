@@ -45,18 +45,21 @@ public class TransliterationFileRenamer implements FileRenamer{
 
     @Override
     public void renameFiles(List<File> files) {
-        for(File file : files) {
-            String originalName = file.getName();
-            String newName = Transliterator.transliterate(originalName);
-
-            Path source = file.toPath();
-            Path target = source.resolveSibling(newName);
-
+        for (File file : files) {
+            String originalName = null;
             try {
+                originalName = file.getName();
+                String newName = TransliteratorUtils.transliterate(originalName);
+
+                Path source = file.toPath();
+                Path target = source.resolveSibling(newName);
+
                 Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);
                 log.info("Renamed: {} -> {}", originalName, newName);
             } catch (IOException e) {
-                log.error("Failed to rename {} : {}", originalName, e.getMessage());
+                log.error("Failed to rename file '{}' due to an I/O error, skipping.", originalName != null ? originalName : file.toString(), e);
+            } catch (Exception e) {
+                log.error("An unexpected error occurred while processing file '{}', skipping.", file.toString(), e);
             }
         }
     }

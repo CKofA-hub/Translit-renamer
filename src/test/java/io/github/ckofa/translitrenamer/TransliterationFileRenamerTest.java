@@ -57,8 +57,8 @@ class TransliterationFileRenamerTest {
         when(mockFileFinder.findFilesOrThrow(folderPath)).thenReturn(List.of(mockFile1, mockFile2));
 
         //Expected result
-        String expectedNewName1 = Transliterator.transliterate(fileName1);
-        String expectedNewName2 = Transliterator.transliterate(fileName2);
+        String expectedNewName1 = TransliteratorUtils.transliterate(fileName1);
+        String expectedNewName2 = TransliteratorUtils.transliterate(fileName2);
         Path expectedNewPath1 = sourcePath1.resolveSibling(expectedNewName1);
         Path expectedNewPath2 = sourcePath2.resolveSibling(expectedNewName2);
 
@@ -109,8 +109,8 @@ class TransliterationFileRenamerTest {
         when(successFile.toPath()).thenReturn(sourcePath2);
 
         // Expected result
-        String expectedNewName1 = Transliterator.transliterate(fileName1);
-        String expectedNewName2 = Transliterator.transliterate(fileName2);
+        String expectedNewName1 = TransliteratorUtils.transliterate(fileName1);
+        String expectedNewName2 = TransliteratorUtils.transliterate(fileName2);
         Path expectedNewPath1 = sourcePath1.resolveSibling(expectedNewName1);
         Path expectedNewPath2 = sourcePath2.resolveSibling(expectedNewName2);
 

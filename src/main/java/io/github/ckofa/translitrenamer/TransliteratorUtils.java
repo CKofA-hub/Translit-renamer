@@ -9,7 +9,7 @@ import java.util.Map;
  * Provides a method for converting strings containing cyrillic characters to their Latin equivalents.
  * </p>
  */
-public final class Transliterator {
+public final class TransliteratorUtils {
 
     private static final Map<Character, String> translitMap = new HashMap<>();
 
@@ -37,7 +37,7 @@ public final class Transliterator {
         }
     }
 
-    private Transliterator() {
+    private TransliteratorUtils() {
         throw new UnsupportedOperationException("Utility class");
     }
 

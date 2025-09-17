@@ -45,8 +45,12 @@ public class CyrillicFileFinder implements FileFinder {
 
         List<File> result = new ArrayList<>();
         for (File file : files) {
-            if (file.isFile() && containsCyrillic(file.getName())) {
-                result.add(file);
+            try {
+                if (file.isFile() && containsCyrillic(file.getName())) {
+                    result.add(file);
+                }
+            } catch (Exception e) {
+                log.error("Error processing file entry '{}', skipping.", file.getName(), e);
             }
         }
 
